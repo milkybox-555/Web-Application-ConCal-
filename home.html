@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .header a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+        h1 {
+            font-size: 60px;
+            font-weight: bold;
+        }
+        .button-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+        .button-container button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="#">Help</a>
+        <a href="#">Info</a>
+    </div>
+
+    <h1>Concal</h1>
+
+    <div class="button-container">
+        <button onclick="window.location.href='/database'">Prediction</button>
+        <button onclick="window.location.href='/add_database'">AddDatabase</button>
+    </div>
+
+</body>
+</html>

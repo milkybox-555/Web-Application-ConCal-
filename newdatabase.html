@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .nav a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+        }
+        .btns {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .btns button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #888;
+            border-radius: 6px;
+            background: #e0e0e0;
+            transition: background 0.2s ease;
+        }
+        .btns button:hover {
+            background: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Select a Database</h1>
+        
+        <form action="/database_selected" method="POST">
+            <label for="database">Choose a database:</label>
+            <select name="database">
+                {% for db in databases %}
+                    <option value="{{ db }}">{{ db }}</option>
+                {% endfor %}
+            </select>
+    
+            <div class="btns">
+                <button type="button" onclick="window.history.back()">Back</button>
+                <button type="submit">Next</button>
+            </div>
+        </form>
+    </div>    
+
+</body>
+</html>

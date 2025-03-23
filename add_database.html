@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 500px;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input, .form-group select {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-group input[type="file"] {
+            cursor: pointer;
+        }
+        .file-item {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #ff0000;
+            cursor: pointer;
+            display: block;
+        }
+        .btns {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .btns button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #888;
+            border-radius: 6px;
+            background: #e0e0e0;
+            transition: background 0.2s ease;
+        }
+        .btns button:hover {
+            background: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Database</h1>
+        <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+            <!-- Database Name -->
+            <div class="form-group">
+                <label for="database_name">Database Name</label>
+                <input type="text" id="database_name" name="database_name" required>
+            </div>
+            <!-- Solvent -->
+            <div class="form-group">
+                <label for="solvent">Solvent</label>
+                <input type="text" id="solvent" name="Solvent" required>
+            </div>
+            <!-- Solute 1 -->
+            <div class="form-group">
+                <label for="solute_1">Solute 1</label>
+                <input type="text" id="solute_1" name="Solute_1" required>
+            </div>
+            <!-- Solute 2 -->
+            <div class="form-group">
+                <label for="solute_2">Solute 2</label>
+                <input type="text" id="solute_2" name="Solute_2">
+            </div>
+            <!-- Light Source -->
+            <div class="form-group">
+                <label for="light-source">Light Source</label>
+                <select id="light-source" name="Light_Source" required>
+                    <option value="">Please Select</option>
+                    <option value="LED">LED</option>
+                    <option value="Fluorescent">Fluorescent</option>
+                    <option value="Sunlight">Sunlight</option>
+                </select>
+            </div>
+
+            <!-- Concentration + File Upload -->
+            <h3>Concentrations</h3>
+            <div id="concentration-container">
+                <script>
+                    for (let i = 1; i <= 10; i++) {
+                        document.write(`
+                            <div class="form-group">
+                                <label>Concentration ${i}</label>
+                                <input type="text" name="concentration_${i}" placeholder="Enter concentration value">
+                            </div>
+                            <div class="form-group">
+                                <label>Upload File</label>
+                                <input type="file" name="files_${i}" accept="image/*" multiple onchange="addFiles(${i})">
+                                <div id="file_list_${i}" style="margin-top: 10px;"></div>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+            <!-- Buttons -->
+            <div class="btns">
+                <button type="button" onclick="window.history.back()">Back</button>
+                <button type="reset">Reset</button>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let fileStorage = {};
+
+        function addFiles(concentrationIndex) {
+            let fileInput = document.querySelector(`input[name='files_${concentrationIndex}']`);
+            let newFiles = Array.from(fileInput.files);
+            
+            if (!fileStorage[concentrationIndex]) {
+                fileStorage[concentrationIndex] = [];
+            }
+
+            fileStorage[concentrationIndex] = fileStorage[concentrationIndex].concat(newFiles);
+            updateFileList(concentrationIndex);
+        }
+
+        function updateFileList(concentrationIndex) {
+            let fileListDiv = document.getElementById(`file_list_${concentrationIndex}`);
+            fileListDiv.innerHTML = "";
+
+            fileStorage[concentrationIndex].forEach((file, index) => {
+                let fileSpan = document.createElement("span");
+                fileSpan.textContent = `🗑 ${file.name}`;
+                fileSpan.classList.add("file-item");
+                fileSpan.onclick = () => removeFile(concentrationIndex, index);
+                fileListDiv.appendChild(fileSpan);
+            });
+        }
+
+        function removeFile(concentrationIndex, fileIndex) {
+            fileStorage[concentrationIndex].splice(fileIndex, 1);
+            updateFileList(concentrationIndex);
+        }
+
+        document.getElementById("upload-form").addEventListener("submit", (event) => {
+            let formData = new FormData(event.target);
+
+            for (let key in fileStorage) {
+                fileStorage[key].forEach(file => {
+                    formData.append(`files_${key}[]`, file);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .nav a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+        }
+        pre {
+            font-size: 18px; 
+            text-align: left; 
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            font-weight: bold;
+            width: 120px;
+            text-align: left;
+        }
+        .form-group select, .form-group input {
+            flex: 1;
+            padding: 8px;
+            font-size: 16px;
+        }
+        .btns {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btns button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            background: #e0e0e0;
+        }
+        .btns button:hover {
+            background: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Concal</div>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="#">Help</a>
+        <a href="#">Info</a>
+    </div>
+
+    <div class="container">
+        <div class="result">
+            <h1>Prediction Result</h1>
+            <pre>{{ result|safe }}</pre>
+        </div>
+
+        <div class="btns">
+            <button type="button" onclick="window.location.href='/'">Home</button>
+        </div>
+    </div>
+</body>
+</html>

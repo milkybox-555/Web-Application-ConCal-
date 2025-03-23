@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .nav a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+        }
+        .btns {
+            margin-top: 20px;
+        }
+        .btns input {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Concal</div>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="#">Help</a>
+        <a href="#">Info</a>
+    </div>
+    <div class="container">
+        <h1>Database</h1>
+        <form class="myform" action="/resultdatabase" method="post">
+            <label for="dataset">Databased</label>
+            <select id="dataset" name="dataset" required>
+                <option disabled selected value="">Please Select</option>
+                <option value="Water-KMNO4-None">Water-KMNO4-None</option>
+                <option value="Water-Salt-None">Water-Salt-None</option>
+                <option value="Water-Sugar-None">Water-Sugar-None</option>
+                <option value="Water-Salt-Sugar">Water-Salt-Sugar</option>
+                <option value="Ethanol-Carbosulfan-None">Ethanol-Carbosulfan-None</option>
+            </select>
+            <div class="btns">
+                <input type="reset" value="Reset">
+                <input type="submit" value="Next">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

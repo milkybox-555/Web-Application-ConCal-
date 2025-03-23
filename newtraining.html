@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .nav a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: black;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+        }
+        pre {
+            background: #f4f4f4;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-container a {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            background: #e0e0e0;
+            text-decoration: none;
+            color: black;
+        }
+        .btn-container a:hover {
+            background: #d0d0d0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Concal</div>
+    <div class="nav">
+        <a href="/">Home</a>
+        <a href="#">Help</a>
+        <a href="#">Info</a>
+    </div>
+    <div class="container">
+        <h1>Training Result</h1>
+        <pre>{{ result | safe }}</pre>
+        <div class="btn-container">
+            <a href="/newdatabase">Back</a>
+            <a href="/upnewimage">Next</a>
+        </div>
+    </div>
+</body>
+</html>
